@@ -10,7 +10,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors({ origin: ['http://localhost:5173', 'https://csvtu.ac.in/NSS_CSVTU/','https://csvtu-nss-deployment.onrender.com/api'] }));
+app.use(cors({ origin: ['http://localhost:5173', 'https://csvtu.ac.in/NSS_CSVTU/'] }));
 
 // Serve static files from server/src/notice and uploads
 app.use('/notice', express.static(path.join(__dirname, 'src/notice')));
