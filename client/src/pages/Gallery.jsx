@@ -5,9 +5,11 @@ function Gallery() {
   const [error, setError] = useState('');
 
   useEffect(() => {
+    const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
     const fetchPhotos = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/photos`);
+        
+        const response = await fetch(`${API_BASE_URL}/photos`);
         if (!response.ok) throw new Error('Failed to fetch photos');
         const data = await response.json();
         setPhotos(data);
