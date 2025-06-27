@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import API_BASE_URL from '../config';
 
 function NoticeUpdate() {
   const [heading, setHeading] = useState('');
@@ -11,7 +11,7 @@ function NoticeUpdate() {
   const [success, setSuccess] = useState('');
   const [filterDate, setFilterDate] = useState('');
   const [filterHeading, setFilterHeading] = useState('');
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
+
 
   const navigate = useNavigate();
 

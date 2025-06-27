@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import collaborationBackground from '../assets/contribution-background.jpg';
+import API_BASE_URL from '../config';
 
 function Contributions() {
   const [contributionCounts, setContributionCounts] = useState({
@@ -8,7 +9,7 @@ function Contributions() {
     specialcamps: 0,
     nssunits: 0,
   });
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
+
   // Fetch contribution data from the backend
   useEffect(() => {
     const fetchContributions = async () => {

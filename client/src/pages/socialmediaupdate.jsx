@@ -6,7 +6,7 @@ import {
   FaTwitter,
   FaFacebook,
 } from 'react-icons/fa';
-
+import API_BASE_URL from '../config';
 const platformIcons = {
   instagram: <FaInstagram className="text-pink-500 text-2xl" />,
   youtube: <FaYoutube className="text-red-600 text-2xl" />,
@@ -24,7 +24,7 @@ function SocialMediaUpdate() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
+
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
     if (!storedUser || storedUser.role !== 'admin') {

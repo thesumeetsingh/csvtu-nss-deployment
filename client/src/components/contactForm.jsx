@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../config';
 
 function ContactForm() {
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
+  
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [response, setResponse] = useState(null);
 

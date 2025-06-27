@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaUsers, FaTree, FaCampground, FaUniversity } from 'react-icons/fa'; // Import icons
-
+import API_BASE_URL from '../config';
 function ContributionsUpdate() {
   const [contributions, setContributions] = useState({
     volunteers: 0,
@@ -13,7 +13,7 @@ function ContributionsUpdate() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
+
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
     if (!storedUser || storedUser.role !== 'admin') {

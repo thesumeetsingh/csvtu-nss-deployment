@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import API_BASE_URL from '../config';
 function Notice() {
   const [notices, setNotices] = useState([]);
   const [filter, setFilter] = useState({ date: '', heading: '' });
   const navigate = useNavigate();
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
+
   // Fetch all notices
   useEffect(() => {
     const fetchNotices = async () => {

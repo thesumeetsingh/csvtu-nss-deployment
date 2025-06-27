@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { FaInstagram, FaYoutube, FaFacebookF } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
-
+import API_BASE_URL from '../config';
 function SocialMediaNSS() {
   const [isVisible, setIsVisible] = useState(false);
   const [followerCounts, setFollowerCounts] = useState({
@@ -11,7 +11,7 @@ function SocialMediaNSS() {
     facebook: 0,
   });
   const sectionRef = useRef(null);
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
+
   // Fetch social media data from the backend
   useEffect(() => {
     const fetchSocialMedia = async () => {

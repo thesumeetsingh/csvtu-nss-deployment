@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import API_BASE_URL from '../config';
 import {
   FaUniversity,
   FaTags,
@@ -26,7 +26,7 @@ function NSSUnitUpdate() {
   const [filterUnitName, setFilterUnitName] = useState('');
   const [filterDistrict, setFilterDistrict] = useState('');
 
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
+
   const navigate = useNavigate();
 
 useEffect(() => {

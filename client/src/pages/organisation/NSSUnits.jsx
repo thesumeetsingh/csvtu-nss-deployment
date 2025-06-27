@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-
+import API_BASE_URL from '../../config';
 function NSSUnits() {
   const [nssUnits, setNSSUnits] = useState([]);
   const [error, setError] = useState('');
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
+
   useEffect(() => {
     const fetchNSSUnits = async () => {
       try {

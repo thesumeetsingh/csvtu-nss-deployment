@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import API_BASE_URL from '../config';
 function UploadPhoto() {
   const [title, setTitle] = useState('');
   const [photos, setPhotos] = useState([]);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
+
 
   const navigate = useNavigate();
 

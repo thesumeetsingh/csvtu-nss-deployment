@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-
+import API_BASE_URL from '../../config';
 function MonthlyReport() {
   const [reports, setReports] = useState([]);
   const [filter, setFilter] = useState({ month: '', year: '' });
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
+
   useEffect(() => {
     const fetchReports = async () => {
       try {

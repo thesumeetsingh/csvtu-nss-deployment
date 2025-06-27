@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import API_BASE_URL from '../config';
 // Team Images
 import teamMember1 from '../assets/member1.jpg';
 import teamMember2 from '../assets/default.jpg';
@@ -49,7 +49,7 @@ function TeamAndNotice() {
   const [scrollOffset, setScrollOffset] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
+
   // Fetch the latest 10 notices
   useEffect(() => {
     const fetchNotices = async () => {
