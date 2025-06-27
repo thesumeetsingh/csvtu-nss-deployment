@@ -18,10 +18,12 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Serve the build folder for the React frontend
 app.use(express.static(path.join(__dirname, 'build')));
-app.get('/', (req, res) => {
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
-
 // Routes
 const authRoutes = require('./routes/auth');
 const socialMediaRoutes = require('./routes/socialMedia');
@@ -42,6 +44,7 @@ app.use('/api/monthly-reports', monthlyReportRoutes);
 app.use('/api/photos', require('./routes/photoRoutes'));
 app.use('/api/contact', contactRoutes);
 app.use('/api/feedback', feedbackRoute);
+
 
 // Load schemas
 require('./schemas/Notice');
