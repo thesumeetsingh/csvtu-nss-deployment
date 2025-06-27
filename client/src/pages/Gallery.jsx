@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-
+import API_BASE_URL from '../config';
 function Gallery() {
   const [photos, setPhotos] = useState([]);
   const [error, setError] = useState('');
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
+
   useEffect(() => {
     
     const fetchPhotos = async () => {
@@ -12,7 +12,7 @@ function Gallery() {
         const response = await fetch(`${API_BASE_URL}/photos`);
         if (!response.ok) throw new Error('Failed to fetch photos');
         const data = await response.json();
-        setPhotos(data);
+        setPhotos(data); //setPhotos(data.photos || data); when not work
       } catch (err) {
         setError(err.message);
         console.error('Fetch error:', err);
