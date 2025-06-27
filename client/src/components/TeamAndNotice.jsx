@@ -49,12 +49,12 @@ function TeamAndNotice() {
   const [scrollOffset, setScrollOffset] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
-
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
   // Fetch the latest 10 notices
   useEffect(() => {
     const fetchNotices = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/notices?limit=10&sort=-date`);
+        const response = await fetch(`${API_BASE_URL}/notices?limit=10&sort=-date`);
         if (!response.ok) throw new Error('Failed to fetch notices');
         const data = await response.json();
         setNotices(data.slice(0, 10)); // Ensure only 10 notices

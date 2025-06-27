@@ -10,7 +10,7 @@ function UpdateMonthlyReport() {
   const [success, setSuccess] = useState('');
   const [filterMonth, setFilterMonth] = useState('');
   const [filterYear, setFilterYear] = useState('');
-
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function UpdateMonthlyReport() {
   useEffect(() => {
     const fetchReports = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/monthly-reports`);
+        const response = await fetch(`${API_BASE_URL}/monthly-reports`);
         if (!response.ok) throw new Error('Failed to fetch reports');
         const data = await response.json();
         setReports(data);
@@ -56,7 +56,7 @@ function UpdateMonthlyReport() {
     formData.append('file', file);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/monthly-reports`, {
+      const response = await fetch(`${API_BASE_URL}/monthly-reports`, {
         method: 'POST',
         body: formData,
       });
@@ -83,10 +83,10 @@ function UpdateMonthlyReport() {
         } else {
           fileId = fileLink;
         }
-        await fetch(`${import.meta.env.VITE_API_URL}/monthly-reports/proxy/${fileId}`, {
+        await fetch(`${API_BASE_URL}/monthly-reports/proxy/${fileId}`, {
           method: 'GET',
         });
-        await fetch(`${import.meta.env.VITE_API_URL}/monthly-reports/${id}`, {
+        await fetch(`${API_BASE_URL}/monthly-reports/${id}`, {
           method: 'DELETE',
         });
         setReports(reports.filter((report) => report._id !== id));

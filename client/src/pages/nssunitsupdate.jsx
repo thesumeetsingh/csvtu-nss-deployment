@@ -26,7 +26,7 @@ function NSSUnitUpdate() {
   const [filterUnitName, setFilterUnitName] = useState('');
   const [filterDistrict, setFilterDistrict] = useState('');
 
-
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
   const navigate = useNavigate();
 
 useEffect(() => {
@@ -40,7 +40,7 @@ useEffect(() => {
   useEffect(() => {
     const fetchNSSUnits = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/nss-units`);
+        const response = await fetch(`${API_BASE_URL}/nss-units`);
         if (!response.ok) throw new Error('Failed to fetch NSS units');
         const data = await response.json();
         setNSSUnits(data);
@@ -64,7 +64,7 @@ useEffect(() => {
     const newNSSUnit = { unitName, category, programOfficer, eti, mobileNo, allotment, district };
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/nss-units`, {
+      const response = await fetch(`${API_BASE_URL}/nss-units`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newNSSUnit),
@@ -95,7 +95,7 @@ useEffect(() => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this NSS unit?')) {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/nss-units/${id}`, {
+        const response = await fetch(`${API_BASE_URL}/nss-units/${id}`, {
           method: 'DELETE',
         });
         if (!response.ok) throw new Error('Failed to delete NSS unit');

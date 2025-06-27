@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 
 function ContactForm() {
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [response, setResponse] = useState(null);
 
@@ -12,7 +13,7 @@ function ContactForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/feedback/send`, form);
+      const res = await fetch(`${API_BASE_URL}/feedback/send`, form);
       setResponse(res.data.message);
       setForm({ name: '', email: '', message: '' });
     } catch (err) {

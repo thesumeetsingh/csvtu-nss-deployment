@@ -3,11 +3,11 @@ import { useState, useEffect } from 'react';
 function NSSUnits() {
   const [nssUnits, setNSSUnits] = useState([]);
   const [error, setError] = useState('');
-
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
   useEffect(() => {
     const fetchNSSUnits = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/nss-units`);
+        const response = await fetch(`${API_BASE_URL}/nss-units`);
         if (!response.ok) throw new Error('Failed to fetch NSS units');
         const data = await response.json();
         setNSSUnits(data);

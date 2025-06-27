@@ -11,12 +11,12 @@ function SocialMediaNSS() {
     facebook: 0,
   });
   const sectionRef = useRef(null);
-
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
   // Fetch social media data from the backend
   useEffect(() => {
     const fetchSocialMedia = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/social-media`);
+        const response = await fetch(`${API_BASE_URL}/social-media`);
         const data = await response.json();
         if (data.success) {
           const counts = data.socialMedia.reduce((acc, item) => {

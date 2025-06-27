@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 function MonthlyReport() {
   const [reports, setReports] = useState([]);
   const [filter, setFilter] = useState({ month: '', year: '' });
-
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
   useEffect(() => {
     const fetchReports = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/monthly-reports`);
+        const response = await fetch(`${API_BASE_URL}/monthly-reports`);
         if (!response.ok) throw new Error('Failed to fetch reports');
         const data = await response.json();
         setReports(data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));

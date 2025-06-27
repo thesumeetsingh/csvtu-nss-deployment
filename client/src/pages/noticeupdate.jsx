@@ -11,7 +11,7 @@ function NoticeUpdate() {
   const [success, setSuccess] = useState('');
   const [filterDate, setFilterDate] = useState('');
   const [filterHeading, setFilterHeading] = useState('');
-
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
 
   const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ useEffect(() => {
   useEffect(() => {
     const fetchNotices = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/notices`);
+        const response = await fetch(`${API_BASE_URL}/notices`);
         if (!response.ok) throw new Error('Failed to fetch notices');
         const data = await response.json();
         setNotices(data);
@@ -59,7 +59,7 @@ useEffect(() => {
     formData.append('file', file);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/notices`, {
+      const response = await fetch(`${API_BASE_URL}/notices`, {
         method: 'POST',
         body: formData,
       });
@@ -88,10 +88,10 @@ useEffect(() => {
           // Assume fileLink is already the fileId
           fileId = fileLink;
         }
-        await fetch(`${import.meta.env.VITE_API_URL}/notices/proxy/delete/${fileId}`, {
+        await fetch(`${API_BASE_URL}/notices/proxy/delete/${fileId}`, {
           method: 'DELETE',
         });
-        await fetch(`${import.meta.env.VITE_API_URL}/notices/${id}`, {
+        await fetch(`${API_BASE_URL}/notices/${id}`, {
           method: 'DELETE',
         });
         setNotices(notices.filter((notice) => notice._id !== id));

@@ -8,13 +8,13 @@ function Contributions() {
     specialcamps: 0,
     nssunits: 0,
   });
-
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
   // Fetch contribution data from the backend
   useEffect(() => {
     const fetchContributions = async () => {
       try {
         console.log('Contributions: Fetching from /api/contributions');
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/contributions`);
+        const response = await fetch(`${API_BASE_URL}/contributions`);
         const data = await response.json();
         console.log('Contributions: API Response:', data);
         if (data.success) {

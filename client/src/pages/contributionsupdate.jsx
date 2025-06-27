@@ -9,10 +9,11 @@ function ContributionsUpdate() {
     specialcamps: 0,
     nssunits: 0,
   });
+  
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
-
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
     if (!storedUser || storedUser.role !== 'admin') {
@@ -22,7 +23,7 @@ function ContributionsUpdate() {
 
     const fetchContributions = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/contributions`, {
+        const response = await fetch(`${API_BASE_URL}/contributions`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -47,7 +48,7 @@ function ContributionsUpdate() {
 
   const handleUpdate = async (type) => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/contributions/${type}`, {
+      const response = await fetch(`${API_BASE_URL}/contributions/${type}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -6,7 +6,7 @@ function UploadPhoto() {
   const [photos, setPhotos] = useState([]);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
 
   const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ useEffect(() => {
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/photos`);
+        const response = await fetch(`${API_BASE_URL}/photos`);
         if (!response.ok) throw new Error('Failed to fetch photos');
         const data = await response.json();
         setPhotos(data);
@@ -42,7 +42,7 @@ useEffect(() => {
     formData.append('title', title);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/photos/upload`, {
+      const response = await fetch(`${API_BASE_URL}/photos/upload`, {
         method: 'POST',
         body: formData,
       });
@@ -62,12 +62,12 @@ useEffect(() => {
   const handleDelete = async (photoId, fileId) => {
     try {
       // Delete from Google Drive
-      await fetch(`${import.meta.env.VITE_API_URL}/photos/proxy/delete/${fileId}`, {
+      await fetch(`${API_BASE_URL}/photos/proxy/delete/${fileId}`, {
         method: 'DELETE',
       });
 
       // Delete from MongoDB
-      await fetch(`${import.meta.env.VITE_API_URL}/photos/${photoId}`, {
+      await fetch(`${API_BASE_URL}/photos/${photoId}`, {
         method: 'DELETE',
       });
 
@@ -119,7 +119,7 @@ useEffect(() => {
         {photos.map((photo) => (
           <div key={photo._id} className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
             <img
-              src={`${import.meta.env.VITE_API_URL}/photos/proxy/${photo.googleDriveLink}`}
+              src={`${API_BASE_URL}/photos/proxy/${photo.googleDriveLink}`}
               alt={photo.title}
               className="w-full h-48 object-cover rounded-t-lg"
               onError={(e) => {

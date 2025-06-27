@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 function Gallery() {
   const [photos, setPhotos] = useState([]);
   const [error, setError] = useState('');
-
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
   useEffect(() => {
-    const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://csvtu-nss-deployment.onrender.com/api';
+    
     const fetchPhotos = async () => {
       try {
         
@@ -22,6 +22,7 @@ function Gallery() {
   }, []);
 
   return (
+    
     <div className="max-w-7xl mx-auto p-6 bg-[#F3F4F6] text-gray-800">
       <h2 className="text-3xl font-bold text-center mb-8 text-blue-800">Gallery</h2>
       {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
@@ -35,7 +36,8 @@ function Gallery() {
           >
             <div className="overflow-hidden rounded-t-lg">
               <img
-                src={`${import.meta.env.VITE_API_URL}/photos/proxy/${photo.googleDriveLink}`}
+              
+                src={`${API_BASE_URL}/photos/proxy/${photo.googleDriveLink}`}
                 alt={photo.title}
                 className="w-full h-60 object-cover transition-transform duration-300 ease-in-out hover:scale-105"
                 onError={(e) => {
