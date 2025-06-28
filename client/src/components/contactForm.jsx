@@ -3,7 +3,6 @@ import axios from 'axios';
 import API_BASE_URL from '../config';
 
 function ContactForm() {
-  
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [response, setResponse] = useState(null);
 
@@ -14,8 +13,15 @@ function ContactForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`${API_BASE_URL}/feedback/send`, form);
-      setResponse(res.data.message);
+      const res = await fetch(`${API_BASE_URL}/feedback/send`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      setResponse(data.message);
       setForm({ name: '', email: '', message: '' });
     } catch (err) {
       setResponse('Failed to send enquiry.');
