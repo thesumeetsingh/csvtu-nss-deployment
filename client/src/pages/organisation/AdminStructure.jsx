@@ -1,3 +1,5 @@
+import structureImage from '../../assets/structure.png';
+
 function AdminStructure() {
   return (
     <div className="min-h-screen bg-[#FFFFFF] flex flex-col">
@@ -10,16 +12,15 @@ function AdminStructure() {
         <h2 className="text-2xl font-semibold text-gray-800 text-center">
           Administrative Structure
         </h2>
-       <div className="min-h-screen bg-[#FFFFFF] flex items-center justify-center ">
-      <div className="max-w-6xl w-full">
-        <img
-          src="../../assets/structure.png"
-          alt="Administrative Structure"
-          className="w-full h-auto"
-        />
-      </div>
-    </div>
-        
+        <div className="min-h-screen bg-[#FFFFFF] flex items-center justify-center">
+          <div className="max-w-6xl w-full">
+            <img
+              src={structureImage}
+              alt="Administrative Structure"
+              className="w-full h-auto"
+            />
+          </div>
+        </div>
       </section>
     </div>
   );

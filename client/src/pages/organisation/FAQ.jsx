@@ -188,7 +188,7 @@ function FAQs() {
         <div className="text-center text-gray-700">
           <p className="text-lg mb-4">No matching questions found.</p>
           <a
-            href="/feedback"
+            href="/contact-us"
             className="inline-block px-5 py-2 bg-white text-black border border-gray-300 rounded hover:bg-blue-600 hover:text-black transition"
           >
             Go to Feedback & Ask Your Question
