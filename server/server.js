@@ -19,24 +19,24 @@ app.use('/uploads', express.static(path.join(__dirname, 'Uploads')));
 app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 
 // Routes
-const authRoutes = require('./routes/auth');
-const socialMediaRoutes = require('./routes/socialMedia');
-const contributionRoutes = require('./routes/contributions');
-const nssUnitRoutes = require('./routes/nssUnit');
-const noticeRoutes = require('./routes/notices');
-const monthlyReportRoutes = require('./routes/monthlyReport');
-const contactRoutes = require('./routes/contact');
-const feedbackRoute = require('./routes/feedbackRoute');
-
-app.use('/api/auth', authRoutes);
-app.use('/api/social-media', socialMediaRoutes);
-app.use('/api/contributions', contributionRoutes);
-app.use('/api/nss-units', nssUnitRoutes);
-app.use('/api/notices', noticeRoutes);
-app.use('/api/monthly-reports', monthlyReportRoutes);
+console.log('Loading auth routes');
+app.use('/api/auth', require('./routes/auth'));
+console.log('Loading social-media routes');
+app.use('/api/social-media', require('./routes/socialMedia'));
+console.log('Loading contributions routes');
+app.use('/api/contributions', require('./routes/contributions'));
+console.log('Loading nss-units routes');
+app.use('/api/nss-units', require('./routes/nssUnit'));
+console.log('Loading notices routes');
+app.use('/api/notices', require('./routes/notices'));
+console.log('Loading monthly-reports routes');
+app.use('/api/monthly-reports', require('./routes/monthlyReport'));
+console.log('Loading photos routes');
 app.use('/api/photos', require('./routes/photoRoutes'));
-app.use('/api/contact', contactRoutes);
-app.use('/api/feedback', feedbackRoute);
+console.log('Loading contact routes');
+app.use('/api/contact', require('./routes/contact'));
+console.log('Loading feedback routes');
+app.use('/api/feedback', require('./routes/feedbackRoute'));
 
 // Fallback to index.html for unmatched routes
 app.use((req, res, next) => {
@@ -49,9 +49,17 @@ require('./schemas/monthlyReport');
 
 // MongoDB connection
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(process.env.MONGODB_URI, { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true 
+  })
   .then(() => console.log('Connected to MongoDB Atlas'))
   .catch((err) => console.error('MongoDB connection error:', err.message, err.stack));
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'Server is running' });
+});
 
 // Start server
 const PORT = process.env.PORT || 5000;

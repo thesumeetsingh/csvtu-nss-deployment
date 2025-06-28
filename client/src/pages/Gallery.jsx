@@ -1,18 +1,31 @@
 import { useEffect, useState } from 'react';
 import API_BASE_URL from '../config';
+
 function Gallery() {
   const [photos, setPhotos] = useState([]);
   const [error, setError] = useState('');
 
+  const fetchWithRetry = async (url, retries = 3, delay = 1000) => {
+    for (let i = 0; i < retries; i++) {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Failed to fetch photos: ${response.status} ${errorText}`);
+        }
+        return await response.json();
+      } catch (err) {
+        if (i === retries - 1) throw err;
+        await new Promise((resolve) => setTimeout(resolve, delay));
+      }
+    }
+  };
+
   useEffect(() => {
-    
     const fetchPhotos = async () => {
       try {
-        
-        const response = await fetch(`${API_BASE_URL}/photos`);
-        if (!response.ok) throw new Error('Failed to fetch photos');
-        const data = await response.json();
-        setPhotos(data); //setPhotos(data.photos || data); when not work
+        const data = await fetchWithRetry(`${API_BASE_URL}/photos`);
+        setPhotos(data);
       } catch (err) {
         setError(err.message);
         console.error('Fetch error:', err);
@@ -22,7 +35,6 @@ function Gallery() {
   }, []);
 
   return (
-    
     <div className="max-w-7xl mx-auto p-6 bg-[#F3F4F6] text-gray-800">
       <h2 className="text-3xl font-bold text-center mb-8 text-blue-800">Gallery</h2>
       {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
@@ -36,7 +48,6 @@ function Gallery() {
           >
             <div className="overflow-hidden rounded-t-lg">
               <img
-              
                 src={`${API_BASE_URL}/photos/proxy/${photo.googleDriveLink}`}
                 alt={photo.title}
                 className="w-full h-60 object-cover transition-transform duration-300 ease-in-out hover:scale-105"
