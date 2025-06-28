@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
 import coordinatorImage from '../../assets/member6.jpg';
+import achievement1 from '../../assets/acheivement1.jpg';
+import achievement2 from '../../assets/acheivement2.jpg';
+import achievement3 from '../../assets/acheivement3.jpg';
+import backgroundImage from '../../assets/about-container-bg.jpg';
 
 function Coordinator() {
-  const achievements = [
-    { title: "Best NSS Programme Officer", image: "../../assets/acheivement1.jpg" },
-    { title: "Best NSS Programme Officer", image: "../../assets/acheivement2.jpg" },
-    { title: "Best NSS Programme Officer", image: "../../assets/acheivement3.jpg" },
-  ];
-
   const [activeCard, setActiveCard] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -15,11 +13,11 @@ function Coordinator() {
   useEffect(() => {
     if (!isHovered) {
       const interval = setInterval(() => {
-        setActiveCard((prev) => (prev + 1) % achievements.length);
+        setActiveCard((prev) => (prev + 1) % 3);
       }, 3000);
       return () => clearInterval(interval);
     }
-  }, [isHovered, achievements.length]);
+  }, [isHovered]);
 
   return (
     <div className="min-h-screen bg-[#F3F4F6] flex flex-col">
@@ -27,7 +25,7 @@ function Coordinator() {
       <section
         className="flex-grow py-12 px-6 bg-gray-100 bg-opacity-80"
         style={{
-          backgroundImage: 'url("/src/assets/about-container-bg.jpg")',
+          backgroundImage: `url(${backgroundImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundBlendMode: 'overlay',
@@ -69,33 +67,75 @@ function Coordinator() {
             Achievements
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {achievements.map((achievement, idx) => (
+            {/* Achievement 1 */}
+            <div
+              className={`relative bg-white p-8 rounded-lg shadow-md border-l-4 border-blue-600 overflow-hidden group transition-all duration-300 ${
+                activeCard === 0 && !isHovered ? 'scale-105 shadow-xl border-blue-800' : ''
+              }`}
+              onMouseEnter={() => {
+                setIsHovered(true);
+                setActiveCard(0);
+              }}
+              onMouseLeave={() => setIsHovered(false)}
+            >
               <div
-                key={idx}
-                className={`relative bg-white p-8 rounded-lg shadow-md border-l-4 border-blue-600 overflow-hidden group transition-all duration-300 ${
-                  activeCard === idx && !isHovered ? 'scale-105 shadow-xl border-blue-800' : ''
-                }`}
-                onMouseEnter={() => {
-                  setIsHovered(true);
-                  setActiveCard(idx);
-                }}
-                onMouseLeave={() => setIsHovered(false)}
-              >
-                {/* Pseudo-element for left-to-right blue fill on hover */}
-                <div
-                  className="absolute inset-0 bg-blue-600 transform translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-in-out"
-                ></div>
-                {/* Content */}
-                <img
-                  src={achievement.image}
-                  alt={achievement.title}
-                  className="h-48 w-full object-cover rounded-md mb-6 relative z-10"
-                />
-                <p className="relative text-gray-600 group-hover:text-white transition-colors duration-300 text-center font-semibold text-lg z-10">
-                  {achievement.title}
-                </p>
-              </div>
-            ))}
+                className="absolute inset-0 bg-blue-600 transform translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-in-out"
+              ></div>
+              <img
+                src={achievement1}
+                alt="Best NSS Programme Officer"
+                className="h-48 w-full object-cover rounded-md mb-6 relative z-10"
+              />
+              <p className="relative text-gray-600 group-hover:text-white transition-colors duration-300 text-center font-semibold text-lg z-10">
+                Best NSS Programme Officer
+              </p>
+            </div>
+            {/* Achievement 2 */}
+            <div
+              className={`relative bg-white p-8 rounded-lg shadow-md border-l-4 border-blue-600 overflow-hidden group transition-all duration-300 ${
+                activeCard === 1 && !isHovered ? 'scale-105 shadow-xl border-blue-800' : ''
+              }`}
+              onMouseEnter={() => {
+                setIsHovered(true);
+                setActiveCard(1);
+              }}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <div
+                className="absolute inset-0 bg-blue-600 transform translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-in-out"
+              ></div>
+              <img
+                src={achievement2}
+                alt="Best NSS Programme Officer"
+                className="h-48 w-full object-cover rounded-md mb-6 relative z-10"
+              />
+              <p className="relative text-gray-600 group-hover:text-white transition-colors duration-300 text-center font-semibold text-lg z-10">
+                Best NSS Programme Officer
+              </p>
+            </div>
+            {/* Achievement 3 */}
+            <div
+              className={`relative bg-white p-8 rounded-lg shadow-md border-l-4 border-blue-600 overflow-hidden group transition-all duration-300 ${
+                activeCard === 2 && !isHovered ? 'scale-105 shadow-xl border-blue-800' : ''
+              }`}
+              onMouseEnter={() => {
+                setIsHovered(true);
+                setActiveCard(2);
+              }}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <div
+                className="absolute inset-0 bg-blue-600 transform translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-in-out"
+              ></div>
+              <img
+                src={achievement3}
+                alt="Best NSS Programme Officer"
+                className="h-48 w-full object-cover rounded-md mb-6 relative z-10"
+              />
+              <p className="relative text-gray-600 group-hover:text-white transition-colors duration-300 text-center font-semibold text-lg z-10">
+                Best NSS Programme Officer
+              </p>
+            </div>
           </div>
         </div>
       </section>
