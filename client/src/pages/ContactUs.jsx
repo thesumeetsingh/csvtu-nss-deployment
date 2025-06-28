@@ -8,7 +8,7 @@ function ContactUs() {
       <section
         className="py-16 px-8 bg-gray-100 bg-opacity-80"
         style={{
-          backgroundImage: 'url("/src/assets/about-container-bg.jpg")',
+          backgroundImage: 'url("../assets/about-container-bg.jpg")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundBlendMode: 'overlay',

@@ -13,7 +13,7 @@ function AdminStructure() {
        <div className="min-h-screen bg-[#FFFFFF] flex items-center justify-center ">
       <div className="max-w-6xl w-full">
         <img
-          src="../src/assets/structure.png"
+          src="../../assets/structure.png"
           alt="Administrative Structure"
           className="w-full h-auto"
         />

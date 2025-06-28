@@ -3,9 +3,9 @@ import coordinatorImage from '../../assets/member6.jpg';
 
 function Coordinator() {
   const achievements = [
-    { title: "Best NSS Programme Officer", image: "/src/assets/acheivement1.jpg" },
-    { title: "Best NSS Programme Officer", image: "/src/assets/acheivement2.jpg" },
-    { title: "Best NSS Programme Officer", image: "/src/assets/acheivement3.jpg" },
+    { title: "Best NSS Programme Officer", image: "../../assets/acheivement1.jpg" },
+    { title: "Best NSS Programme Officer", image: "../../assets/acheivement2.jpg" },
+    { title: "Best NSS Programme Officer", image: "../../assets/acheivement3.jpg" },
   ];
 
   const [activeCard, setActiveCard] = useState(0);
