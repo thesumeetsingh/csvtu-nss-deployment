@@ -38,8 +38,79 @@ app.use('/api/contact', require('./routes/contact'));
 console.log('Loading feedback routes');
 app.use('/api/feedback', require('./routes/feedbackRoute'));
 
-// Fallback to index.html for unmatched routes
-app.use((req, res, next) => {
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'Server is running' });
+});
+
+// Client-side routing with individual routes
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+app.get('/awards', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+app.get('/notice', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+app.get('/gallery', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+app.get('/contact-us', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+app.get('/organisation/about-us', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+app.get('/organisation/aim-objective', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+app.get('/organisation/admin-structure', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+app.get('/organisation/nss-units', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+app.get('/organisation/coordinator', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+app.get('/dashboard/social-media', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+app.get('/dashboard/contributions', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+app.get('/dashboard/notice', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+app.get('/dashboard/nss-units', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+app.get('/dashboard/uploadphoto', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+app.get('/dashboard/upload-monthly-report', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+app.get('/organisation/faq', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+app.get('/events', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+app.get('/documents/monthly-reports', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+app.get('/documents/announcements', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+app.get('/documents/nss-manual', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
 });
 
@@ -55,11 +126,6 @@ mongoose
   })
   .then(() => console.log('Connected to MongoDB Atlas'))
   .catch((err) => console.error('MongoDB connection error:', err.message, err.stack));
-
-// Health check endpoint
-app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'Server is running' });
-});
 
 // Start server
 const PORT = process.env.PORT || 5000;
